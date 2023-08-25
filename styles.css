@@ -1,0 +1,208 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Apply a background gradient */
+body {
+    background: linear-gradient(45deg, #2980b9, #6dd5fa);
+    font-family: Arial, sans-serif;
+    color: #fff;
+}
+
+/* Header Styles */
+header {
+    background: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    padding: 1rem 0;
+}
+
+header h1 {
+    font-size: 2rem;
+}
+
+/* Main Content Styles */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+/* Main Content Styles */
+.content {
+    background: rgba(158, 11, 11, 0.61);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    opacity: 0; /* Start with opacity 0 to make it invisible */
+    transform: rotate(-45deg); /* Start with a rotated state */
+    animation: fadeAndRotate 2s forwards, rotateBack 2s 2s forwards; /* Add animations */
+}
+
+/* Increase opacity on hover to make it more visible */
+.content:hover {
+    opacity: 1;
+}
+
+/* Define the fade-in and rotate animation keyframes */
+@keyframes fadeAndRotate {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+}
+
+/* Define the rotation back animation keyframes */
+@keyframes rotateBack {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* Add snowflake animation */
+@keyframes snow-fall {
+    0% {
+        transform: translateX(-100%) scale(0.5); /* Start off-screen to the left and smaller */
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(120vw) scale(5); /* Move across the page and grow 5 times in size */
+        opacity: 1;
+    }
+}
+
+/* Create snowflakes using pseudo-elements */
+body::before,
+body::after {
+    content: '❄'; /* Unicode snowflake character */
+    position: absolute;
+    color: #fff; /* Snowflake color */
+    opacity: 0;
+    font-size: 1.5rem; /* Adjust snowflake size as needed */
+    animation: snow-fall 10s linear infinite; /* Add snowfall animation (slower) */
+    animation-delay: calc(1s * var(--delay)); /* Delay snowflakes to create randomness */
+    left: calc(100% * var(--position-x)); /* Random horizontal position */
+    top: calc(100% * var(--position-y)); /* Random vertical position */
+    transform-origin: center;
+    transition: transform 0.5s ease, opacity 0.5s ease; /* Add transitions */
+}
+
+
+
+/* Position snowflakes randomly along the left and right edges */
+body::before {
+    left: calc(5% + 5% * var(--position-x)); /* Random horizontal position on the left side */
+}
+
+body::after {
+    right: calc(5% + 5% * var(--position-x)); /* Random horizontal position on the right side */
+}
+
+/* Add twinkle animation */
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Animated Button Styles */
+.animated-button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.animated-button:hover {
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    overflow: hidden; /* Hide overflow for smoother animation */
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+/* Add slide animation to the footer paragraph */
+footer p {
+    display: inline-block; /* Keep text on a single line */
+    color: #fff;
+    font-size: 1rem;
+    margin: 0;
+    animation: ticker 15s linear infinite; /* Add slide animation */
+}
+
+/* Add slide animation */
+@keyframes ticker {
+    0% {
+        transform: translateX(-100%); /* Start off-screen to the left */
+    }
+    100% {
+        transform: translateX(100%); /* Move off-screen to the right */
+    }
+}
+
+/* Example text for the ticker */
+footer p::before {
+    content: "Breaking News: "; /* Add your news content here */
+    font-weight: bold;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+
+    .content {
+        width: 90%;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+}
